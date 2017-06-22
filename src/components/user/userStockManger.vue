@@ -1,0 +1,81 @@
+<template>
+  <div>
+    <mt-header title="管理自选股">
+      <router-link to="/user/stock" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <div v-infinite-scroll="addMore">
+      <mt-cell-swipe
+        v-for="item in userStock.myStock.data"
+        :key="item.code"
+        :right="[{
+          content: '删除',style: { background: 'red', color: '#fff' },handler: () => deleteStock(item.code)
+        }]"
+        :title="item.name"
+        :label="item.code"
+      >
+      </mt-cell-swipe>
+      <p v-show="loading" class="page-infinite-loading">
+        <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
+        加载中...
+      </p>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { mapGetters, mapActions } from 'vuex'
+  import { CellSwipe , Toast } from 'mint-ui';
+
+	export default {
+		name: 'userStockManger',
+    components: {
+      CellSwipe
+    },
+    computed: mapGetters({
+      userStock: 'userStock',
+      deleteStockMsg : 'deleteStockMsg'
+    }),
+    data() {
+      return {
+        loading : false,
+        pageNo : 0,
+        pageSize : 20
+      };
+    },
+    created () {
+      this.getData();
+    },
+    methods : {
+			init (){
+        this.loading = false;
+        this.pageNo = 0;
+      },
+      getData(){
+        this.$store.dispatch('getUserStock', {pageNo : this.pageNo ,pageSize: this.pageSize });
+      },
+      addMore (){
+        let totalPage = this.userStock.myStock.totalPage;
+        if(this.pageNo + 1 >= totalPage) return;
+        this.loading = true;
+        this.pageNo = this.pageNo + 1;
+        this.getData();
+      },
+      deleteStock(code){
+        //console.log(code)
+        this.$store.dispatch('deleteUserStock' , code);
+      }
+    },
+    watch : {
+      userStock (){
+        this.loading = false
+      },
+      deleteStockMsg (){
+        Toast(this.deleteStockMsg.msg);
+        this.init();
+        this.getData();
+      }
+    }
+	}
+</script>
