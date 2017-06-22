@@ -2,7 +2,9 @@
   <div class="bg-white">
   <!--头部-->
   <header class="aui-bar aui-bar-nav header">
-    <router-link to="/" class="aui-pull-left aui-btn red aui-font-size-20 aui-margin-l-15">华闽财经</router-link>
+    <router-link to="/" class="aui-pull-left aui-btn red aui-font-size-20 aui-margin-l-15">
+      <img src="../assets/logo.png" alt="logo">
+    </router-link>
     <router-link v-if="userLoginInfo.data.id == null" class="aui-pull-right aui-btn" to="/user/login">
       <img src="/static/image/login.png" class="aui-img-round">
     </router-link>
