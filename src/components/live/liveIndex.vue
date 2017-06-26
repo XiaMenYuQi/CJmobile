@@ -90,6 +90,8 @@
             deft:'UD,HD,SD,LD',//配置文件里有，则不需要再设置
             deff: live.liveUrl+'_lud|' + live.liveUrl + '_lhd|'  + live.liveUrl + '_lsd|' + live.liveUrl + '_lld'
           };
+
+          //CKobject.embed('../../../static/plugin/ckplayer/ckplayer.swf','J_prismPlayer','CKPlayer','100%','300',false,flashlets,video,params);
         }else{
           Toast({
             message: '直播状态异常！',
@@ -99,7 +101,7 @@
         }
 
 
-        //CKobject.embed('../../../static/plugin/ckplayer/ckplayer.swf','J_prismPlayer','CKPlayer','100%','300',false,flashlets,video,params);
+
 
         /*****************聊天室相关*****************/
         let loginUserId = "";
