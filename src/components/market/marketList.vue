@@ -7,7 +7,7 @@
       </mt-header>
       <div class="aui-content" style="height: 100%" >
         <!--榜单-->
-        <div class="rank-list aui-font-size-14" v-infinite-scroll="addMore">
+        <div class="rank-list aui-font-size-14" infinite-scroll-distance="50" v-infinite-scroll="addMore">
           <div class="rank-header clearfix">
             <div class="aui-col-xs-4 aui-padded-l-15">{{ module[id][0] }}</div>
             <div class="aui-col-xs-4 aui-text-center">{{ module[id][1] }}</div>
@@ -100,9 +100,9 @@
     },
     methods : {
       addMore (){
-      	let _this = this;
+      	var _this = this;
         if(_this.id == 0 || _this.id == 1|| _this.id == 3 || _this.id == 4) {
-          let _this = this;
+          var _this = this;
           _this.pageNo = _this.pageNo + 1;
           _this.$store.dispatch('getStockListData', {id: _this.id, pageNo: _this.pageNo, init: false});
         }

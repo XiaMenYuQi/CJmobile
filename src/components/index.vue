@@ -25,7 +25,7 @@
     </div>
     <slide :slideItemList="slideItemList"></slide>
     <div class="aui-padded-l-r-15">
-      <ul class="aui-list news-list" v-infinite-scroll="addMore">
+      <ul class="aui-list news-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
         <li class="aui-list-item aui-img" v-for="item in newsList[0]">
           <div class="aui-list-item-title">
             <div><router-link :to="item.accessUrl | newsUrl">{{item.title}}</router-link></div>
@@ -71,7 +71,7 @@
     },
     methods : {
       addMore (){
-        let _this = this;
+        var _this = this;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getNewsList', {keyMark:'index',pageNo:_this.pageNo});
       }

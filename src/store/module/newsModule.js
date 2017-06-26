@@ -111,7 +111,7 @@ const actions = {
 // mutations
 const mutations = {
     [types.GET_NEWS_LIST](state , ret){
-      let n;
+      var n;
       switch (ret.keyMark){
         case 'index':
           n = 0;
@@ -130,8 +130,8 @@ const mutations = {
       state.slideItemList = ret.data.data.slideItemList;
     },
     [types.GET_NEWS_LIST_PUSH](state , ret){
-      let arr = ret.data.data.newsList.data;
-      let n;
+      var arr = ret.data.data.newsList.data;
+      var n;
       switch (ret.keyMark){
         case 'index':
           n = 0;
@@ -146,8 +146,8 @@ const mutations = {
           n = 3;
           break;
       }
-      let before = state.newsList[n];
-      for(let i = 0;i<arr.length;i++){
+      var before = state.newsList[n];
+      for(var i = 0;i<arr.length;i++){
         before.push(arr[i]);
       }
       Vue.set(state.newsList,n,before)
@@ -156,8 +156,8 @@ const mutations = {
       state.news24List.data = [];
     },
     [types.GET_NEWS24_LIST](state , ret){
-      let arr = ret.data.live724List.data;
-      let before = state.news24List.data;
+      var arr = ret.data.live724List.data;
+      var before = state.news24List.data;
       arr.forEach(function(e){
         before.push(e)
       });
@@ -171,8 +171,8 @@ const mutations = {
       state.newsComment.data = []
     },
     [types.GET_NEWS_COMMENT](state , ret){
-      let arr = ret.data.userCommentList.data;
-      let before = state.newsComment.data;
+      var arr = ret.data.userCommentList.data;
+      var before = state.newsComment.data;
       arr.forEach(function(e){
         before.push(e)
       });

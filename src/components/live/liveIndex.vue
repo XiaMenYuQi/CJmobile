@@ -40,6 +40,7 @@
           </div>
         </div>
       </div>
+      <div class="h30"></div>
     </div>
 </template>
 
@@ -49,7 +50,7 @@
   import { liveUrl } from '../../store/baseUrl'
   import '../../../static/plugin/ckplayer/ckplayer.js'
 
-  let socket;
+  var socket;
 	export default {
 		name: 'liveIndex',
     computed: mapGetters({
@@ -58,7 +59,7 @@
     }),
 		data () {
 			return {
-				id : 20,
+				id : this.$route.params.id,
         chartText: '',
         responeArr : []
       }
@@ -68,30 +69,25 @@
     },
     watch:{
       liveIndex (){
-      	let _this = this;
-        let live = this.liveIndex;
+      	var _this = this;
+        var live = this.liveIndex;
         //正常只有1、5状态会进入这个页面
-        let flashlets = {};
-        let video= [];
+        var flashlets={
+          p:1,
+          e:1,
+          i: live.cover
+        };
+        var video= [''];
+        var support=['all'];
         if (live.state==5) {
-          flashlets={
-            p:1,
-            e:1,
-            i: live.cover
-          };
           video = [live.recordUrl];
-          let support=['all'];
-          CKobject.embedHTML5('J_prismPlayer','CKPlayer','100%','100%',video,flashlets,support);
+
         }else if(live.state==1) {
           //正在直播pass
-          flashlets={
-            f: live.liveUrl,
-            s:0,//调用方式，0=普通调用
-            deft:'UD,HD,SD,LD',//配置文件里有，则不需要再设置
-            deff: live.liveUrl+'_lud|' + live.liveUrl + '_lhd|'  + live.liveUrl + '_lsd|' + live.liveUrl + '_lld'
-          };
+          //rtmp://live.ydcjzx.com/cj/1498461746961645351
+          var m3u8 = live.liveUrl.replace("rtmp:", "http:") + '.m3u8';
+          video = [m3u8];
 
-          //CKobject.embed('../../../static/plugin/ckplayer/ckplayer.swf','J_prismPlayer','CKPlayer','100%','300',false,flashlets,video,params);
         }else{
           Toast({
             message: '直播状态异常！',
@@ -100,15 +96,16 @@
           });
         }
 
+        CKobject.embedHTML5('J_prismPlayer','CKPlayer','100%','100%',video,flashlets,support);
 
 
 
         /*****************聊天室相关*****************/
-        let loginUserId = "";
+        var loginUserId = "";
         if(null!=this.userLoginInfo.data.id){
           loginUserId=this.userLoginInfo.data.id
         }
-        let wsUrl = liveUrl.replace("http:", "ws:")+"/ws?3_"+live.id+'_'+ loginUserId;
+        var wsUrl = liveUrl.replace("http:", "ws:")+"/ws?3_"+live.id+'_'+ loginUserId;
         console.log(wsUrl);
         socket = new WebSocket(wsUrl);
         //连接监听事件
@@ -123,10 +120,10 @@
 
         //收到消息监听事件
         socket.onmessage = function(evt) {
-          let received_msg = evt.data;
+          var received_msg = evt.data;
           console.log('message from server:', received_msg);
 
-          let respone = JSON.parse(received_msg);
+          var respone = JSON.parse(received_msg);
           if(!respone){
             return;
           }
@@ -146,8 +143,8 @@
     methods: {
       send(){
         //发送消息
-        let _this = this;
-        let msg = this.chartText;
+        var _this = this;
+        var msg = this.chartText;
         if(null!=this.userLoginInfo.data.id){
           Toast("请先登陆！");
           return false;
@@ -178,4 +175,5 @@
   .live-chart i{font-size: 1.3rem;color:#989898;}
   .chart-box{ overflow-y: auto; height: 40%}
   .live-userBox{height: 15%; border-bottom: 1px solid #ccc;}
+  .h30{height: 3rem;}
 </style>

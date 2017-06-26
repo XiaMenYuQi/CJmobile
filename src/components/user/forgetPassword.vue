@@ -125,7 +125,7 @@
       onSubmit() {
         //console.log(this.formstate.$valid);
         if(this.formstate.$valid){
-        	let data = {
+        	var data = {
             mobile: this.model.mobile,
             password : md5(md5(this.model.password)),
             yzmCode : this.model.check

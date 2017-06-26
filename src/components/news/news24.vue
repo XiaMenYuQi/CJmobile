@@ -1,5 +1,5 @@
 <template>
-  <div class="news-hours-content aui-margin-l-r-15 aui-margin-t-10" v-infinite-scroll="addMore">
+  <div class="news-hours-content aui-margin-l-r-15 aui-margin-t-10" infinite-scroll-distance="50" v-infinite-scroll="addMore">
     <div class="news-hours-item" v-for="item in news24List.data">
       <span class="small-text aui-margin-b-10">{{item.createTime}}</span>
       <div class="news-hours-item-title aui-font-size-16">{{item.content}}</div>
@@ -31,8 +31,8 @@
     },
     methods : {
       addMore (){
-        let _this = this;
-        let totalPage = _this.news24List.totalPage;
+        var _this = this;
+        var totalPage = _this.news24List.totalPage;
         if(_this.pageNo  + 1  >= totalPage) return;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getNews24List', _this.pageNo);

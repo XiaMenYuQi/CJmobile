@@ -5,7 +5,7 @@
     </mt-header>
     <div class="aui-content ">
       <div class="aui-padded-l-r-15 bg-white" v-if="newsComment.data.length > 0">
-        <ul class="aui-list aui-media-list" v-infinite-scroll="addMore">
+        <ul class="aui-list aui-media-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
           <li class="aui-list-item aui-padded-l-0" v-for="item in newsComment.data">
             <div class="aui-media-list-item-inner">
               <div class="aui-list-item-media comment-list-avatar">
@@ -41,11 +41,12 @@
       <!--评论-->
       <div class="clearfix new-detail-comment">
         <div class="new-detail-comment-input" @click="showComment" >
-          <input type="text" placeholder="写评论..."  />
+          <input type="text" placeholder="写评论..." disabled />
         </div>
       </div>
       <addComment v-show="showCom"></addComment>
     </div>
+    <div class="h30"></div>
   </div>
 </template>
 
@@ -76,8 +77,8 @@
     },
     methods :{
       addMore (){
-        let _this = this;
-        let totalPage = _this.newsComment.totalPage;
+        var _this = this;
+        var totalPage = _this.newsComment.totalPage;
         if(_this.pageNo  + 1  >= totalPage) return;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getCommentList', { id : this.id , pageNo : this.pageNo} );
@@ -102,8 +103,8 @@
 </script>
 
 <style scoped>
-  .aui-content{margin-bottom: 3rem;}
   .new-detail-comment{  background: #fafafa;  padding: 0.5rem 0;border-top: 1px solid #ccc;position: fixed;bottom: 0;width: 100%;}
   .new-detail-comment-input input[type=text]{    min-height: 1.8rem;width: 90%;  border: 1px solid #d8d8d8;  border-radius: 20px;  padding-left: 0.75rem;  margin: 0 auto;  background: #fff;}
   .new-detail-comment i{font-size: 1.3rem;color:#989898;}
+  .h30{height: 3rem;}
 </style>

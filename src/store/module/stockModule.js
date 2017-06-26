@@ -138,7 +138,7 @@ const actions = {
   },
   //股票详情
   getStockOptional({ commit  }, code){
-    let type = '';
+    var type = '';
     if(code.length == 8) {type = 'm';}
     //实时数据
     Vue.http.post( ctx +  '/optional/stock', {
@@ -214,9 +214,9 @@ const mutations = {
     Vue.set(state.stockList,parseInt(ret.id),ret.data.data)
   },
   [types.GET_STOCK_LIST_DATA_PUSH](state, ret){
-    let arr = ret.data.data.data;
-    let before = state.stockList[parseInt(ret.id)];
-    for(let i = 0;i<arr.length;i++){
+    var arr = ret.data.data.data;
+    var before = state.stockList[parseInt(ret.id)];
+    for(var i = 0;i<arr.length;i++){
       before.data.push(arr[i]);
     }
     Vue.set(state.stockList,parseInt(ret.id),before)

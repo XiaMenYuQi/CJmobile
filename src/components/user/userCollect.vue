@@ -7,7 +7,7 @@
         <mt-button slot="right" @click="editClick">{{btnFlag?'编辑': '取消'}}</mt-button>
       </mt-header>
       <div class="aui-content collection aui-margin-t-10" v-if="userCollect.data.length > 0">
-        <div class="aui-list aui-list-border-0 aui-media-list" v-infinite-scroll="addMore">
+        <div class="aui-list aui-list-border-0 aui-media-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
           <div class="aui-list-item aui-margin-b-10" v-for="item in userCollect.data">
             <div class="aui-media-list-item-inner">
               <div class="aui-list-item-inner">
@@ -93,7 +93,7 @@
       },
       checkAll (){
 				this.checkBtnFlag = !this.checkBtnFlag;
-				let arr = [];
+				var arr = [];
 				if(this.checkBtnFlag){
 					//全选
           this.userCollect.data.forEach(function(e){
@@ -106,11 +106,11 @@
 
       },
       deleteNews (){
-      	let _this = this;
+      	var _this = this;
       	if(this.num == 0){ return }
         MessageBox.confirm('确定删除选中列表?').then(({ action }) => {
       		//确定
-          let idStr = _this.checkedItem.toString();
+          var idStr = _this.checkedItem.toString();
           _this.$store.dispatch('deleteUserCollect' , idStr);
 
         },()=>{
@@ -119,8 +119,8 @@
         });
       },
       addMore (){
-        let _this = this;
-        let totalPage = _this.userCollect.totalPage;
+        var _this = this;
+        var totalPage = _this.userCollect.totalPage;
         if(_this.pageNo + 1  >= totalPage) return;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getUserCollect', _this.pageNo);

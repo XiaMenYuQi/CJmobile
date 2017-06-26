@@ -29,7 +29,7 @@
         <!--评论-->
         <div class="clearfix new-detail-comment">
           <div class="aui-col-xs-8 new-detail-comment-input" @click="showComment">
-            <input type="text" placeholder="写评论...">
+            <input type="text" placeholder="写评论..." disabled>
           </div>
           <div class="aui-col-xs-2 aui-text-center">
             <div class="aui-badge">{{newsDetail.news.commentCount == null? '0': newsDetail.news.commentCount }}</div>
@@ -42,7 +42,8 @@
           </div>
         </div>
         <addComment v-show="showCom"></addComment>
-    </div>
+      </div>
+      <div class="h30"></div>
     </div>
 </template>
 
@@ -105,16 +106,17 @@
 
 <style scoped>
   /*--------------------新闻详情页-----------------------*/
-  .news-detail{margin-bottom: 0.75rem;color:#585858;overflow: hidden}
+  .news-detail{margin-bottom: 0.75rem;color:#585858;overflow: hidden;}
   .news-detail-title{font-size: 1rem;margin: 0.75rem 0;}
   .news-detail-other{font-size: 0.65rem;color:#7b7b7b; }
   .news-detail-other span{margin-right: 1rem;}
   .news-detail-article p{font-size: 0.75rem;margin: 0.75rem 0;line-height: 1.4rem;color:#585858;}
-  .new-detail-related{color:#585858;font-size:0.75rem;margin-bottom: 3rem;}
+  .new-detail-related{color:#585858;font-size:0.75rem;}
   .new-detail-related-header{font-weight: bold; padding-bottom: 0.5rem;border-bottom:1px solid #dfdfdf;}
   .new-detail-related-title{margin: 0.5rem 0;}
   .new-detail-comment{  background: #fafafa;  padding: 0.5rem 0;border-top: 1px solid #ccc;position: fixed;bottom: 0;width: 100%;}
   .new-detail-comment-input input[type=text]{    min-height: 1.8rem;width: 90%;  border: 1px solid #d8d8d8;  border-radius: 20px;  padding-left: 0.75rem;  margin: 0 auto;  background: #fff;}
   .new-detail-comment i{font-size: 1.3rem;color:#989898;}
   .new-detail-related-list>li{border-bottom:1px solid #dfdfdf;}
+  .h30{height: 3rem;}
 </style>

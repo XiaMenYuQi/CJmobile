@@ -8,8 +8,8 @@ import { Indicator , Toast } from 'mint-ui';
 
 Vue.use(VueResource);
 
-let userData = {};
-let userId = '';
+var userData = {};
+var userId = '';
 if(window.localStorage['CJuserData']!=null){
   userData = JSON.parse(window.localStorage['CJuserData']);
   userId = userData.id;
@@ -345,8 +345,8 @@ const mutations = {
     state.userMessage.data = [];
   },
   [types.GET_USER_MESSAGE](state , ret){
-    let before = state.userMessage.data;
-    let arr = ret.data.data;
+    var before = state.userMessage.data;
+    var arr = ret.data.data;
     arr.forEach(function(e){
       before.push(e)
     });
@@ -357,8 +357,8 @@ const mutations = {
     state.userCollect.data = [];
   },
   [types.GET_USER_COLLECT](state , ret){
-    let before = state.userCollect.data;
-    let arr = ret.data.data;
+    var before = state.userCollect.data;
+    var arr = ret.data.data;
     arr.forEach(function(e){
       before.push(e)
     });
@@ -380,8 +380,8 @@ const mutations = {
   [types.GET_USER_STOCK](state , ret){
     state.userStock.marketData = ret.data.marketData;
     if(state.userId == '') return;
-    let before = state.userStock.myStock.data;
-    let arr = ret.data.myStock.data;
+    var before = state.userStock.myStock.data;
+    var arr = ret.data.myStock.data;
     arr.forEach(function(e){
       before.push(e)
     });

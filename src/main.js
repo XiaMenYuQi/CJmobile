@@ -34,8 +34,8 @@ Vue.use(VueForm, {
 });
 
 // getter，返回已注册的过滤器
-let imgUrl = Vue.filter('imgUrl');
-let newsUrl = Vue.filter('newsUrl');
+var imgUrl = Vue.filter('imgUrl');
+var newsUrl = Vue.filter('newsUrl');
 
 
 Vue.config.productionTip = false;

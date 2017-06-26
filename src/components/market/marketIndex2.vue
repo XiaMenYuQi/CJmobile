@@ -189,7 +189,7 @@
           this.$store.dispatch('getStockChart' , {code : this.code});
         }else{
     			//0,1,2
-          let n = parseInt(this.tabActive1 - 2);
+          var n = parseInt(this.tabActive1 - 2);
           this.$store.dispatch('getStockChart' , {code : this.code,n : n});
 
         }

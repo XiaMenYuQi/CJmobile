@@ -408,7 +408,7 @@
     },
     methods :{
       addUserStock (){
-      	let _this = this;
+      	var _this = this;
       	if(_this.userLoginInfo.data.id==null){
           Toast('请先登陆!');
           return;
@@ -435,7 +435,7 @@
           this.$store.dispatch('getStockChart' , {code : this.code});
         }else{
     			//0,1,2
-          let n = parseInt(this.tabActive1 - 2);
+          var n = parseInt(this.tabActive1 - 2);
           this.$store.dispatch('getStockChart' , {code : this.code,n : n});
 
         }

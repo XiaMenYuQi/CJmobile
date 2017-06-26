@@ -5,7 +5,7 @@
           <mt-button icon="back"></mt-button>
         </router-link>
       </mt-header>
-      <div class="aui-content aui-padded-r-10 aui-padded-l-10" v-if="userMessage.data.length > 0" v-infinite-scroll="addMore">
+      <div class="aui-content aui-padded-r-10 aui-padded-l-10" v-if="userMessage.data.length > 0" infinite-scroll-distance="50" v-infinite-scroll="addMore">
         <div class="station-item aui-margin-t-15" v-for="item in userMessage.data">
           <p class="station-item-time aui-text-center aui-font-size-12">{{item.send_time}}</p>
           <div class="station-item-wrap">
@@ -52,8 +52,8 @@
     },
     methods : {
       addMore (){
-        let _this = this;
-        let totalPage = _this.userMessage.totalPage;
+        var _this = this;
+        var totalPage = _this.userMessage.totalPage;
         if(_this.pageNo + 1  >= totalPage) return;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getUserMessage', _this.pageNo);

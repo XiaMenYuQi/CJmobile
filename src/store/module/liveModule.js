@@ -64,8 +64,8 @@ const mutations = {
     state.liveList.data = [];
   },
   [types.GET_LIVE_LIST](state , ret){
-    let arr = ret.data.liveList.data;
-    let before = state.liveList.data;
+    var arr = ret.data.liveList.data;
+    var before = state.liveList.data;
     arr.forEach(function(e){
       before.push(e)
     });

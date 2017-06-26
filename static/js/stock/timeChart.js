@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts/highstock'
 
 //highstock K线图
-export let highStockChart = function(divID,result,selectedBtn){
+export var highStockChart = function(divID,result,selectedBtn){
     var firstTouch = true;
     //开盘价，最高价，收盘价，最低价，成交量,价格变动,涨跌幅,5日均价,,10日均价,20日均价,5日均量,10日均量,20日均量，换手率,当前点离左边的相对距离
     var  open,high,close,low,vol,zde,zdf,MA5,MA10,MA20,VolMA5,VolMA10,VolMA20,hsl,relativeWidth;
@@ -209,7 +209,7 @@ export let highStockChart = function(divID,result,selectedBtn){
     var time = parseFloat(data[length][0]);
 
 
-    for (let i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
         //	console.log( Highcharts.dateFormat('%A ,%Y-%m-%d %H:%M',parseInt(data[i][0])));
         ohlcArray.push([
             parseInt(data[i].date), // the date
@@ -599,7 +599,7 @@ export let highStockChart = function(divID,result,selectedBtn){
 
 
 //highstock K线图
-export let highTimeChart = function(divID,result,yestPrice){
+export var highTimeChart = function(divID,result,yestPrice){
 	//开盘价，最高价，收盘价，最低价，成交量,价格变动,涨跌幅,5日均价,,10日均价,20日均价,5日均量,10日均量,20日均量，换手率,当前点离左边的相对距离
 	var  time,currentVolume,currentPrice,averagePrice,currentAmount,relativeWidth,minTime,maxTime,breakFrom,breakTo,currentPriceRate,averagePriceRate;
 	//定义数组
@@ -652,7 +652,7 @@ export let highTimeChart = function(divID,result,yestPrice){
 		}
 	});
 	//格式化数据，准备绘图
-	let data = result;
+	var data = result;
 	var date=new Date();
 	var todayD=date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
 	minTime=new Date(todayD+' 9:30:00').getTime();

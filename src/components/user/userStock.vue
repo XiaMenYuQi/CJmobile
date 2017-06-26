@@ -18,7 +18,7 @@
         <stockMarket :marketData="userStock.marketData" v-if="userStock.marketData!=null"></stockMarket>
         <template v-if="userLoginInfo.data.id!=null">
           <!--自选股列表-->
-          <div class="market-optional-list rank-list" v-if="userStock.myStock.data.length > 0"  v-infinite-scroll="addMore">
+          <div class="market-optional-list rank-list" v-if="userStock.myStock.data.length > 0"  infinite-scroll-distance="50" v-infinite-scroll="addMore">
             <div class="market-optional-list-header clearfix">
               <div class="aui-col-xs-4">名称</div>
               <div class="aui-col-xs-4">价格</div>
@@ -86,7 +86,7 @@
     },
     methods : {
     	addMore (){
-        let totalPage = this.userStock.myStock.totalPage;
+        var totalPage = this.userStock.myStock.totalPage;
         if(this.pageNo + 1 >= totalPage) return;
         this.loading = true;
         this.pageNo = this.pageNo + 1;

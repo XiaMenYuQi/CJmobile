@@ -5,7 +5,7 @@
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div v-infinite-scroll="addMore">
+    <div infinite-scroll-distance="50" v-infinite-scroll="addMore">
       <mt-cell-swipe
         v-for="item in userStock.myStock.data"
         :key="item.code"
@@ -56,7 +56,7 @@
         this.$store.dispatch('getUserStock', {pageNo : this.pageNo ,pageSize: this.pageSize });
       },
       addMore (){
-        let totalPage = this.userStock.myStock.totalPage;
+        var totalPage = this.userStock.myStock.totalPage;
         if(this.pageNo + 1 >= totalPage) return;
         this.loading = true;
         this.pageNo = this.pageNo + 1;

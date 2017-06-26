@@ -86,8 +86,8 @@
     },
     methods: {
       upload(){
-      	let _this = this;
-        let formData = new FormData($("#upload")[0]);
+      	var _this = this;
+        var formData = new FormData($("#upload")[0]);
         //console.log(formData)
         $.ajax({
           url: ctx+ '/transfer',
@@ -109,7 +109,7 @@
         });
       },
       saveClick(){
-        let emailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        var emailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
         if ( this.userInfo.mobile != '' && this.userInfo.mobile != null) {
         	if(!(/^1(3|4|5|7|8)\d{9}$/.test(this.userInfo.mobile))){
             Toast({
@@ -130,7 +130,7 @@
             return false;
           }
         }
-      	let data = {
+      	var data = {
       		nick : this.userInfo.nick,
           birthday : this.birthday,
           sex : this.sex == '男'? 1 : 0,
@@ -145,10 +145,10 @@
         this.$refs[picker].open();
       },
       handleChange(value) {
-        let year = value.getFullYear();
+        var year = value.getFullYear();
         var month = value.getMonth() + 1;
         month = month<10?'0'+month:month;
-        let day = value.getDate()<10?'0'+value.getDate() : value.getDate();
+        var day = value.getDate()<10?'0'+value.getDate() : value.getDate();
         this.birthday = year + '-' + month + '-' + day;
       },
       setMan(){

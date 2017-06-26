@@ -180,8 +180,8 @@
     },
     updated (){
       $('.market-theme-item').on('click',function(){
-        let itemCon = $(this).find('.market-theme-item-con');
-        let iconBox = $(this).find('.icon-box');
+        var itemCon = $(this).find('.market-theme-item-con');
+        var iconBox = $(this).find('.icon-box');
         itemCon.toggleClass('aui-hide');
         iconBox.toggleClass('show');
       })

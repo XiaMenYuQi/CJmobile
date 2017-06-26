@@ -2,7 +2,7 @@
   <div class="aui-content">
     <slide :slideItemList="slideItemList"></slide>
     <div class="aui-padded-l-r-15">
-      <ul class="aui-list news-list" v-infinite-scroll="addMore">
+      <ul class="aui-list news-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
         <li class="aui-list-item aui-img"  v-for="item in newsList[index]">
           <div class="aui-list-item-title">
             <div><router-link :to="item.accessUrl | newsUrl">{{item.title}}</router-link></div>
