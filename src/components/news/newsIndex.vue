@@ -15,12 +15,13 @@
         </router-link>
       </header>
       <div class="index-nav news-nav">
-        <ul class="clearfix">
-          <router-link tag="li" active-class="active" to="/news/list/index"><a>要闻</a><span></span></router-link>
-          <router-link tag="li" active-class="active" to="/news/news24"><a>7*24小时</a><span></span></router-link>
-          <router-link tag="li" active-class="active" to="/news/list/bank"><a>银行</a><span></span></router-link>
-          <router-link tag="li" active-class="active" to="/news/list/futures"><a>期货</a><span></span></router-link>
-          <router-link tag="li" active-class="active" to="/news/list/fund"><a>基金</a><span></span></router-link>
+        <ul class="clearfix" :style="{width : LiWidth}">
+          <router-link v-for="item in category" key="index" v-if="item.isShow" class="nav-li" tag="li" active-class="active" :to="item.url">
+            <a>{{item.name}}</a><span></span>
+          </router-link>
+          <router-link class="nav-li" tag="li" active-class="active" to="/news/category">
+            <a>+</a><span></span>
+          </router-link>
         </ul>
       </div>
       <transition name="slide">
@@ -34,15 +35,29 @@
 
   export default {
     name: 'newsIndex',
-    computed: mapGetters({
-      userLoginInfo : 'userLoginInfo'
-    }),
+    computed: {
+      ...mapGetters({
+        userLoginInfo : 'userLoginInfo',
+        category : 'category'
+      }),
+      LiWidth(){
+      	return this.liNum * 80 + 'px';
+      }
+    },
     data () {
-        return {}
+      return {
+        liNum : ''
+      }
+    },
+    mounted(){
+      this.liNum = document.getElementsByClassName('nav-li').length;
     }
   }
 </script>
 
 <style scoped>
   .aui-btn .aui-img-round{width:1.5rem}
+  .news-nav ul{display: flex;justify-content: flex-start;}
+  .news-nav li{display: inline-block;width: 80px}
+  .news-nav li span{width:50%;margin-left: -25%;}
 </style>

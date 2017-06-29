@@ -10,7 +10,80 @@ Vue.use(VueResource);
 
 // initial state
 const state = {
-  newsList: [[],[],[]],
+  category: [
+    {
+      name : '要闻',
+      en : 'index',
+      url : '/news/list/index',
+      isShow : true
+    },{
+      name : '7*24小时',
+      en : '',
+      url : '/news/news24',
+      isShow : true
+    },{
+      name : '银行',
+      en : 'bank',
+      url : '/news/list/bank',
+      isShow : true
+    },{
+      name : '期货',
+      en : 'futures',
+      url : '/news/list/futures',
+      isShow : true
+    },{
+      name : '基金',
+      en : 'fund',
+      url : '/news/list/fund',
+      isShow : true
+    },{
+      name : '股票',
+      en : 'stock',
+      url : '/news/list/stock',
+      isShow : false
+    },{
+      name : '保险',
+      en : 'insurance',
+      url : '/news/list/insurance',
+      isShow : false
+    },{
+      name : '黄金',
+      en : 'gold',
+      url : '/news/list/gold',
+      isShow : false
+    },{
+      name : '债券',
+      en : 'bond',
+      url : '/news/list/bond',
+      isShow : false
+    },{
+      name : '外汇',
+      en : 'foreignExchange',
+      url : '/news/list/foreignExchange',
+      isShow : false
+    },{
+      name : '能源',
+      en : 'energy',
+      url : '/news/list/energy',
+      isShow : false
+    },{
+      name : '理财',
+      en : 'finances',
+      url : '/news/list/finances',
+      isShow : false
+    },{
+      name : '信托',
+      en : 'trust',
+      url : '/news/list/trust',
+      isShow : false
+    },{
+      name : '城市',
+      en : 'city',
+      url : '/news/list/city',
+      isShow : false
+    }
+  ],
+  newsList: [[],[],[],[],[],[],[],[],[],[],[],[]],
   slideItemList : [],
   news24List:{
     data : [],
@@ -25,6 +98,7 @@ const state = {
 
 // getters
 const getters = {
+  category: state => state.category,
   newsList: state => state.newsList,
   slideItemList : state => state.slideItemList,
   news24List : state => state.news24List,
@@ -125,6 +199,33 @@ const mutations = {
         case 'fund':
           n = 3;
           break;
+        case 'stock':
+          n = 4;
+          break;
+        case 'insurance':
+          n = 5;
+          break;
+        case 'gold':
+          n = 6;
+          break;
+        case 'bond':
+          n = 7;
+          break;
+        case 'foreignExchange':
+          n = 8;
+          break;
+        case 'energy':
+          n = 9;
+          break;
+        case 'finances':
+          n = 10;
+          break;
+        case 'trust':
+          n = 11;
+          break;
+        case 'city':
+          n = 12;
+          break;
       }
       Vue.set(state.newsList,n,ret.data.data.newsList.data);
       state.slideItemList = ret.data.data.slideItemList;
@@ -144,6 +245,33 @@ const mutations = {
           break;
         case 'fund':
           n = 3;
+          break;
+        case 'stock':
+          n = 4;
+          break;
+        case 'insurance':
+          n = 5;
+          break;
+        case 'gold':
+          n = 6;
+          break;
+        case 'bond':
+          n = 7;
+          break;
+        case 'foreignExchange':
+          n = 8;
+          break;
+        case 'energy':
+          n = 9;
+          break;
+        case 'finances':
+          n = 10;
+          break;
+        case 'trust':
+          n = 11;
+          break;
+        case 'city':
+          n = 12;
           break;
       }
       var before = state.newsList[n];

@@ -11,10 +11,6 @@
           <router-link :to="item.accessUrl | newsUrl"><img class="aui-list-item-media" :src="item.cover | imgUrl"></router-link>
         </li>
       </ul>
-      <!--<p v-show="loading" class="page-infinite-loading">-->
-        <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
-        <!--加载中...-->
-      <!--</p>-->
     </div>
   </div>
 </template>
@@ -28,6 +24,12 @@
     name: 'newsList',
     components: {
       slide
+    },
+    data () {
+      return {
+        pageNo : 0,
+        name : this.$route.params.name
+      }
     },
     computed: {
     	//拓展运算符
@@ -49,6 +51,33 @@
           case 'fund':
           	return 3;
           	break;
+          case 'stock':
+            return 4;
+            break;
+          case 'insurance':
+            return 5;
+            break;
+          case 'gold':
+            return 6;
+            break;
+          case 'bond':
+            return 7;
+            break;
+          case 'foreignExchange':
+            return 8;
+            break;
+          case 'energy':
+            return 9;
+            break;
+          case 'finances':
+            return 10;
+            break;
+          case 'trust':
+            return 11;
+            break;
+          case 'city':
+            return 12;
+            break;
         }
       }
     },
@@ -56,16 +85,6 @@
       '$route' (to, from) {
         this.name = this.$route.params.name;
         this.$store.dispatch('getNewsList', {keyMark : this.name , pageNo : 0});
-      },
-//      newsList (){
-//        this.loading = false
-//      }
-    },
-    data () {
-      return {
-        pageNo : 0,
-        loading : false,
-        name : this.$route.params.name
       }
     },
     created () {

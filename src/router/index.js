@@ -10,6 +10,7 @@ import marketIndex2 from '../components/market/marketIndex2'  //指数详情
 import newsIndex from '../components/news/newsIndex'  //新闻页
 import newsList from '../components/news/newsList'  //新闻列表（要闻，银行等等）
 import news24 from '../components/news/news24'   //新闻列表 7*24小时
+import category from '../components/news/category'
 import newsDetail from '../components/news/newsDetail'  //新闻详情
 import newsComment from '../components/news/newsComment' //新闻评论
 import userStock from '../components/user/userStock'   //自选股
@@ -24,6 +25,7 @@ import userAgree from '../components/user/userAgree' //用户协议
 import forgetPassword from '../components/user/forgetPassword' //忘记密码
 import liveList from '../components/live/liveList' //直播列表
 import liveIndex from '../components/live/liveIndex' //直播详情
+
 
 Vue.use(Router);
 
@@ -70,6 +72,11 @@ export default new Router({
           component: news24
         }
       ]
+    },
+    {
+      path: '/news/category',
+      name: 'category',
+      component: category
     },
     {
       path: '/:part/:year/:date/:time/:id',
