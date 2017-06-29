@@ -40,10 +40,6 @@
             <p class="aui-margin-b-15">您还没有添加自选股<br />快去添加一些吧</p>
             <stockHotList></stockHotList>
           </div>
-          <p v-show="loading" class="page-infinite-loading">
-            <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-            加载中...
-          </p>
         </template>
 
         <!-- 热门股票-->
@@ -88,14 +84,8 @@
     	addMore (){
         var totalPage = this.userStock.myStock.totalPage;
         if(this.pageNo + 1 >= totalPage) return;
-        this.loading = true;
         this.pageNo = this.pageNo + 1;
         this.$store.dispatch('getUserStock', {pageNo : this.pageNo ,pageSize: this.pageSize });
-      }
-    },
-    watch : {
-      userStock (){
-      	this.loading = false
       }
     }
   }

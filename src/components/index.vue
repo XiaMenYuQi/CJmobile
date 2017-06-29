@@ -33,10 +33,10 @@
           </div>
           <router-link :to="item.accessUrl | newsUrl"><img class="aui-list-item-media" :src="item.cover | imgUrl"></router-link>
         </li>
-        <p v-show="loading" class="page-infinite-loading">
-          <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-          加载中...
-        </p>
+        <!--<p v-show="loading" class="page-infinite-loading">-->
+          <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
+          <!--加载中...-->
+        <!--</p>-->
       </ul>
     </div>
   </div>
@@ -74,11 +74,6 @@
         var _this = this;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getNewsList', {keyMark:'index',pageNo:_this.pageNo});
-      }
-    },
-    watch : {
-      newsList (){
-        this.loading = false;
       }
     }
   }

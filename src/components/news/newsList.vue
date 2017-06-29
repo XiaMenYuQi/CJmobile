@@ -11,10 +11,10 @@
           <router-link :to="item.accessUrl | newsUrl"><img class="aui-list-item-media" :src="item.cover | imgUrl"></router-link>
         </li>
       </ul>
-      <p v-show="loading" class="page-infinite-loading">
-        <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-        加载中...
-      </p>
+      <!--<p v-show="loading" class="page-infinite-loading">-->
+        <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
+        <!--加载中...-->
+      <!--</p>-->
     </div>
   </div>
 </template>
@@ -57,9 +57,9 @@
         this.name = this.$route.params.name;
         this.$store.dispatch('getNewsList', {keyMark : this.name , pageNo : 0});
       },
-      newsList (){
-        this.loading = false
-      }
+//      newsList (){
+//        this.loading = false
+//      }
     },
     data () {
       return {
@@ -75,7 +75,7 @@
     },
     methods : {
     	addMore (){
-        this.loading = true;
+        //this.loading = true;
         this.pageNo = this.pageNo + 1;
         this.$store.dispatch('getNewsList', {keyMark : this.name , pageNo : this.pageNo})
       }

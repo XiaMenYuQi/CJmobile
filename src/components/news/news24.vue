@@ -4,10 +4,10 @@
       <span class="small-text aui-margin-b-10">{{item.createTime}}</span>
       <div class="news-hours-item-title aui-font-size-16">{{item.content}}</div>
     </div>
-    <p v-show="loading" class="page-infinite-loading">
-      <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-      加载中...
-    </p>
+    <!--<p v-show="loading" class="page-infinite-loading">-->
+      <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
+      <!--加载中...-->
+    <!--</p>-->
   </div>
 </template>
 
@@ -37,11 +37,11 @@
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getNews24List', _this.pageNo);
       }
-    },
-    watch : {
-      news24List (){
-        this.loading = false
-      }
     }
+//    watch : {
+//      news24List (){
+//        this.loading = false
+//      }
+//    }
   }
 </script>

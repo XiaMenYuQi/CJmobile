@@ -16,10 +16,6 @@
               <router-link :to="'/live/index/'+ item.id"><img class="aui-list-item-media" :src="item.cover"></router-link>
             </li>
           </ul>
-          <p v-show="loading" class="page-infinite-loading">
-            <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-            加载中...
-          </p>
         </div>
       </div>
     </div>
@@ -38,8 +34,7 @@
     },
 		data () {
       return {
-        pageNo : 0,
-        loading : false
+        pageNo : 0
       }
 		},
     methods : {
@@ -49,11 +44,6 @@
         if(_this.pageNo  + 1  >= totalPage) return;
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getLiveList', _this.pageNo);
-      }
-    },
-    watch : {
-      liveList (){
-        this.loading = false
       }
     }
 	}

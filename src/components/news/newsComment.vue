@@ -29,10 +29,10 @@
             </div>
           </li>
         </ul>
-        <p v-show="loading" class="page-infinite-loading">
-          <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-          加载中...
-        </p>
+        <!--<p v-show="loading" class="page-infinite-loading">-->
+          <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
+          <!--加载中...-->
+        <!--</p>-->
       </div>
       <div class="null-data" v-else>
         <img src="/static/image/null-data.png" alt="暂无数据">
@@ -94,11 +94,11 @@
         window.history.go(-1)
       }
     },
-    watch : {
-      newsComment (){
-        this.loading = false
-      }
-    }
+//    watch : {
+//      newsComment (){
+//        this.loading = false
+//      }
+//    }
 	}
 </script>
 

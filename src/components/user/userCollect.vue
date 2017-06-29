@@ -22,10 +22,6 @@
               </div>
             </div>
           </div>
-          <p v-show="loading" class="page-infinite-loading">
-            <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-            加载中...
-          </p>
         </div>
         <div class="collection-edit-wrap aui-text-center clearfix" :class="btnFlag?'aui-hide': ''">
           <div class="aui-col-xs-6 aui-border-r" @click.stop="checkAll">{{checkBtnFlag?'取消全选':'全选'}}</div>
@@ -60,9 +56,6 @@
 			num (){
         this.checkBtnFlag = (this.num == this.userCollect.data.length);
       },
-      userCollect (){
-				this.loading = false;
-      },
       collectDeleteMsg(){
         Toast(this.collectDeleteMsg.msg);
         this.init();
@@ -72,7 +65,6 @@
     data () {
       return {
         pageNo : 0,
-        loading : false,
         btnFlag : true,
         checkBtnFlag : false,
         checkedItem :[]

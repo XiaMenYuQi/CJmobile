@@ -16,10 +16,6 @@
         :label="item.code"
       >
       </mt-cell-swipe>
-      <p v-show="loading" class="page-infinite-loading">
-        <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-        加载中...
-      </p>
     </div>
   </div>
 </template>
@@ -39,7 +35,6 @@
     }),
     data() {
       return {
-        loading : false,
         pageNo : 0,
         pageSize : 20
       };
@@ -49,7 +44,6 @@
     },
     methods : {
 			init (){
-        this.loading = false;
         this.pageNo = 0;
       },
       getData(){
@@ -58,7 +52,6 @@
       addMore (){
         var totalPage = this.userStock.myStock.totalPage;
         if(this.pageNo + 1 >= totalPage) return;
-        this.loading = true;
         this.pageNo = this.pageNo + 1;
         this.getData();
       },
@@ -68,9 +61,6 @@
       }
     },
     watch : {
-      userStock (){
-        this.loading = false
-      },
       deleteStockMsg (){
         Toast(this.deleteStockMsg.msg);
         this.init();

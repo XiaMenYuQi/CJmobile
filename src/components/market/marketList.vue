@@ -68,10 +68,6 @@
             </div>
           </template>
         </div>
-        <p v-show="loading" class="page-infinite-loading">
-          <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-          加载中...
-        </p>
       </div>
     </div>
 </template>
@@ -90,9 +86,7 @@
         module : [['名称','领涨股','涨跌幅'],['名称','领跌股','涨跌幅'],['名称','发行价','发行量'],['名称','当前价','涨跌幅'],
           ['名称','当前价','涨跌幅'],['名称','当前价','涨跌幅'],['名称','当前价','涨跌幅']],
         id : this.$route.params.id,
-        pageNo : 1,
-        loading : false
-
+        pageNo : 1
       }
 		},
     created () {
@@ -106,11 +100,6 @@
           _this.pageNo = _this.pageNo + 1;
           _this.$store.dispatch('getStockListData', {id: _this.id, pageNo: _this.pageNo, init: false});
         }
-      }
-    },
-    watch : {
-      stockList (){
-        this.loading = false
       }
     }
 	}

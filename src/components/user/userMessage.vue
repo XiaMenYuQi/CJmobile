@@ -13,10 +13,10 @@
             <div class="station-item-con"></div>
           </div>
         </div>
-        <p v-show="loading" class="page-infinite-loading">
-          <mt-spinner type="fading-circle" color="#E85546"></mt-spinner>
-          加载中...
-        </p>
+        <!--<p v-show="loading" class="page-infinite-loading">-->
+          <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
+          <!--加载中...-->
+        <!--</p>-->
         <!--<div class="station-item aui-margin-t-15">-->
           <!--<p class="station-item-time aui-text-center aui-font-size-12">2017-03-27 13:05</p>-->
           <!--<div class="station-item-wrap">-->
@@ -58,11 +58,11 @@
         _this.pageNo = _this.pageNo + 1;
         _this.$store.dispatch('getUserMessage', _this.pageNo);
       }
-    },
-    watch : {
-      userMessage (){
-        this.loading = false
-      }
     }
+//    watch : {
+//      userMessage (){
+//        this.loading = false
+//      }
+//    }
 	}
 </script>
