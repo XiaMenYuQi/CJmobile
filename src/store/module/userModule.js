@@ -212,7 +212,7 @@ const actions = {
   //删除收藏新闻
   deleteUserCollect({ commit } , idStr){
     // idStr:收藏id拼接（用，隔开）
-    Vue.http.post( ctx +  '/user/favorite/delete' , {idStr : idStr},{emulateJSON:true}).then(response => {
+    Vue.http.post( ctx +  '/user/favorite/delete' , {userId: state.userId , idStr : idStr},{emulateJSON:true}).then(response => {
       //console.log(response);
       commit(types.DELETE_USER_COLLECT, response.body)
 
