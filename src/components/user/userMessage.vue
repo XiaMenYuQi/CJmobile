@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mt-header title="站内消息">
+      <mt-header fixed title="站内消息">
         <router-link to="/user/center" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>

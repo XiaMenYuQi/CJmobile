@@ -4,11 +4,13 @@
     <div class="aui-padded-l-r-15">
       <ul class="aui-list news-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
         <li class="aui-list-item aui-img"  v-for="item in newsList[index]">
-          <div class="aui-list-item-title">
-            <div><router-link :to="item.accessUrl | newsUrl">{{item.title}}</router-link></div>
-            <span class="small-text aui-margin-t-10">{{item.publishTime}}</span>
-          </div>
-          <router-link :to="item.accessUrl | newsUrl"><img class="aui-list-item-media" :src="item.cover | imgUrl"></router-link>
+          <router-link :to="item.accessUrl | newsUrl">
+            <div class="aui-list-item-title">
+              <div class="aui-ellipsis-2">{{item.title}}</div>
+              <span class="small-text aui-margin-t-10">{{item.publishTime}}</span>
+            </div>
+            <img class="aui-list-item-media" :src="item.cover | imgUrl">
+          </router-link>
         </li>
       </ul>
     </div>
@@ -84,11 +86,13 @@
     watch :{
       '$route' (to, from) {
         this.name = this.$route.params.name;
+        window.scrollTo(0,0);
         this.$store.dispatch('getNewsList', {keyMark : this.name , pageNo : 0});
       }
     },
     created () {
       //console.log(this.$route.params.name);
+      window.scrollTo(0,0);
       this.$store.dispatch('getNewsList', {keyMark: this.name, pageNo:0});
 
     },

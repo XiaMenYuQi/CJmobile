@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mt-header title="要闻">
+      <mt-header fixed title="要闻">
         <mt-button icon="back" slot="left" @click="back"></mt-button>
         <mt-button icon="more" slot="right"></mt-button>
       </mt-header>
@@ -16,6 +16,7 @@
 
           </div>
         </div>
+        <div class="cell"></div>
         <!--相关阅读-->
         <div class="new-detail-related content bg-white">
           <h3 class="new-detail-related-header">相关阅读</h3>
@@ -106,7 +107,7 @@
 
 <style scoped>
   /*--------------------新闻详情页-----------------------*/
-  .news-detail{margin-bottom: 0.75rem;color:#585858;overflow: hidden;}
+  .news-detail{color:#585858;overflow: hidden;}
   .news-detail-title{font-size: 1rem;margin: 0.75rem 0;}
   .news-detail-other{font-size: 0.65rem;color:#7b7b7b; }
   .news-detail-other span{margin-right: 1rem;}

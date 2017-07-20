@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <mt-header title="评论">
+    <mt-header fixed title="评论">
       <mt-button icon="back" slot="left" @click="back"></mt-button>
     </mt-header>
     <div class="aui-content ">

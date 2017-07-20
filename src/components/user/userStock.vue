@@ -1,6 +1,6 @@
 <template>
     <div class="bg-white">
-      <mt-header title="自选股">
+      <mt-header fixed title="自选股">
         <router-link to="/" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>

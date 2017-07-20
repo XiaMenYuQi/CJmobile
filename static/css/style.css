@@ -151,6 +151,7 @@ a{color: #666666}
 .null-data{text-align: center;margin-top: 30%;color: #9d9d9d;}
 .null-data p{padding-top: 20px;font-size: 1rem;}
 
+.mint-header-title{overflow: auto}
 /*--------------------首页-----------------------*/
 .index-nav{width: 100%;    padding: 0.7rem 0;overflow-x: auto;background-color: #353942 ;}
 .index-nav::-webkit-scrollbar{color: transparent;  height: 0;  }
@@ -164,48 +165,21 @@ a{color: #666666}
     -o-transition: all 0.6s;	/* Opera */}
 .index-nav li.active span{background-color: #E85546;}
 
-
+.aui-content{padding-top: 40px;}
+.news-slide{margin-top: 2rem;}
+.mint-header.is-fixed{z-index: 100}
+.cell{height: 0.75rem;width: 100%;background: #f5f5f5}
 /*--------------------新闻页-----------------------*/
 
-
-/*轮播*/
-.news-slide .aui-slide-page-active {  background: #fff;  }
-.news-slide .aui-slide-con {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    color: #fff;
-    font-size: 0.75rem;
-    padding: 0.45rem 0.6rem;
-    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.55));
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.55));
-    background: linear-gradient(top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.55));
-}
-.news-slide-advert{    display: inline-block;
-    width: 2.2rem;
-    text-align: center;
-    min-width: 0.8rem;
-    height: 0.9rem;
-    line-height: 0.9rem;
-    padding: 0 0.2rem;
-    font-size: 0.6rem;
-    color: #ffffff;
-    background-color: #E85546;
-    border-radius: 0.4rem;
-    z-index: 99;}
-.news-slide-advert.right{
-    position: absolute;
-    bottom: 1rem;
-    right: -6px;
-}
 /*新闻列表*/
 .news-list .aui-list-item>a{
   display: inline-block;
-  width: 40%;
+  width: 100%;
 }
 .news-list .aui-list-item-media{
-  width: 100%;
+  width: 40%;
   height:5rem;
+  display: inline-block;
   object-fit: cover;
   padding-right: 0.2rem;
 }
@@ -214,8 +188,11 @@ a{color: #666666}
   font-size: 0.85rem;
   padding: 0.4rem 0.5rem 0.4rem 0.2rem;
   line-height: 1.25rem;
-  width: 60%;
+  width: 55%;
+  display: inline-block;
 }
+
+
 /*--------------------7*24小时-----------------------*/
 .news-hours-content{ background: url("../image/icon/icon-Line.png") repeat-y 9px;}
 .news-hours-item{  padding-left:30px;background:url("../image/icon/icon-clock.png") no-repeat 0 3px;color: #585858;  }

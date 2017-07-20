@@ -151,6 +151,7 @@
 </script>
 
 <style scoped>
+  .aui-content{padding-top: 0}
   .h-100{height: 100% ; background-color: #fff}
   .error-msg{font-size: .7rem;color: #ED776B}
   button, .aui-btn{border: none}

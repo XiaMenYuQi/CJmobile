@@ -64,10 +64,10 @@
           <span class="icon-img icon-bottom-round"></span>
           <p class="login-other-tip ">第三方登录</p>
           <div class="clearfix aui-padded-l-r-15">
-            <div class="aui-col-xs-3"><span class="icon-img icon-qq"></span></div>
-            <div class="aui-col-xs-3"><span class="icon-img icon-wechart"></span></div>
-            <div class="aui-col-xs-3"><span class="icon-img icon-sina"></span></div>
-            <div class="aui-col-xs-3"><span class="icon-img icon-baidu"></span></div>
+            <div class="aui-col-xs-6"><span class="icon-img icon-qq"></span></div>
+            <div class="aui-col-xs-6"><span class="icon-img icon-wechart"></span></div>
+            <!--<div class="aui-col-xs-3"><span class="icon-img icon-sina"></span></div>-->
+            <!--<div class="aui-col-xs-3"><span class="icon-img icon-baidu"></span></div>-->
           </div>
         </div>
       </div>
@@ -121,6 +121,7 @@
 </script>
 
 <style scoped>
+  .aui-content{padding-top: 0}
   .h-100{height: 100% ; background-color: #fff}
   .error-msg{font-size: .7rem;color: #ED776B}
   button, .aui-btn{border: none}

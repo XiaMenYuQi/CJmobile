@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mt-header title="个人中心">
+      <mt-header fixed title="个人中心">
         <router-link to="/" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>

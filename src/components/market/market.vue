@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mt-header title="行情">
+      <mt-header fixed title="行情">
         <router-link to="/" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>

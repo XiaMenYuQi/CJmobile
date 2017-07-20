@@ -72,7 +72,7 @@ const actions = {
     Indicator.open();
     Vue.http.post( ctx +  '/market/center').then(response => {
       Indicator.close();
-      console.log(response);
+      //console.log(response);
       commit(types.GET_STOCK_INDEX_DATA, response.body)
 
     }, response => {
@@ -149,30 +149,32 @@ const actions = {
       commit(types.GET_STOCK_OPTIONAL_DATA, response.body)
     }, response => {
       console.log(response);
-      errMsg();
       // error callback
     });
   },
   getStockChart({ commit }, {code: code , n: n}){
+    Indicator.open();
     //console.log(n)
     if(n!=undefined){
       //K线图表数据
       Vue.http.post( ctx +  '/optional/stock/data', {code: code , ktype : ktype[n],count: 500} , {emulateJSON:true}).then(response => {
-        console.log(response);
-        commit(types.GET_STOCK_KCHART_DATA, {data: response.body, n: n})
-
+        //console.log(response);
+        commit(types.GET_STOCK_KCHART_DATA, {data: response.body, n: n});
+        Indicator.close();
       }, response => {
         console.log(response);
+        errMsg();
         // error callback
       });
     }else{
       //分时
       Vue.http.post( ctx +  '/optional/stock/data', {code: code } , {emulateJSON:true}).then(response => {
         //console.log(response);
-        commit(types.GET_STOCK_CHART_DATA, response.body)
-
+        commit(types.GET_STOCK_CHART_DATA, response.body);
+        Indicator.close();
       }, response => {
         console.log(response);
+        errMsg();
         // error callback
       });
     }
@@ -231,7 +233,7 @@ const mutations = {
     state.stockIndex.stockDetail = ret.data;
   },
   [types.GET_STOCK_CHART_DATA](state , ret){
-    new highTimeChart('container', ret.data, state.stockIndex.stockDetail.lastPrice);//绘制分时图
+    new highTimeChart('container', ret.data.data, state.stockIndex.stockDetail.stockData.lastPrice);//绘制分时图
   },
   [types.GET_STOCK_KCHART_DATA](state , {data, n}){
     new highStockChart('container'+ n,data.data,n);//绘制K线图

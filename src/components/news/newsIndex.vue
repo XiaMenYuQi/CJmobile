@@ -56,6 +56,8 @@
 </script>
 
 <style scoped>
+  .header{position: fixed;z-index: 100}
+  .index-nav{position: fixed;top: 2rem;z-index: 100}
   .aui-btn .aui-img-round{width:1.5rem}
   .news-nav ul{display: flex;justify-content: flex-start;}
   .news-nav li{display: inline-block;width: 80px}

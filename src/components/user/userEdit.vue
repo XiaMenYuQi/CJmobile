@@ -1,12 +1,12 @@
 <template>
     <div>
-      <mt-header title="个人资料">
+      <mt-header  fixed title="个人资料">
         <router-link to="/user/center" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>
         <mt-button slot="right" @click="saveClick">保存</mt-button>
       </mt-header>
-      <div class="aui-content aui-margin-t-10">
+      <div class="aui-content">
         <div class="aui-list aui-list-border-0">
           <div class="aui-list-item-wrap">
             <div class="aui-list-item aui-padded-l-0 border-b">

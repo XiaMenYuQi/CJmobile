@@ -1,13 +1,15 @@
 <template>
-  <div class="news-hours-content aui-margin-l-r-15 aui-margin-t-10" infinite-scroll-distance="50" v-infinite-scroll="addMore">
-    <div class="news-hours-item" v-for="item in news24List.data">
-      <span class="small-text aui-margin-b-10">{{item.createTime}}</span>
-      <div class="news-hours-item-title aui-font-size-16">{{item.content}}</div>
+  <div class="news24">
+    <div class="news-hours-content aui-margin-l-r-15 aui-margin-t-10" infinite-scroll-distance="50" v-infinite-scroll="addMore">
+      <div class="news-hours-item" v-for="item in news24List.data">
+        <span class="small-text aui-margin-b-10">{{item.createTime}}</span>
+        <div class="news-hours-item-title aui-font-size-16">{{item.content}}</div>
+      </div>
+      <!--<p v-show="loading" class="page-infinite-loading">-->
+        <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
+        <!--加载中...-->
+      <!--</p>-->
     </div>
-    <!--<p v-show="loading" class="page-infinite-loading">-->
-      <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
-      <!--加载中...-->
-    <!--</p>-->
   </div>
 </template>
 
@@ -28,6 +30,7 @@
     },
     created(){
       this.$store.dispatch('getNews24List', this.pageNo);
+      window.scrollTo(0,0);
     },
     methods : {
       addMore (){
@@ -45,3 +48,7 @@
 //    }
   }
 </script>
+
+<style scoped>
+  .news24{padding-top: 4rem}
+</style>

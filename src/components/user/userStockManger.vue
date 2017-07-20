@@ -1,11 +1,11 @@
 <template>
   <div>
-    <mt-header title="管理自选股">
+    <mt-header fixed title="管理自选股">
       <router-link to="/user/stock" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div infinite-scroll-distance="50" v-infinite-scroll="addMore">
+    <div class="aui-content" infinite-scroll-distance="50" v-infinite-scroll="addMore">
       <mt-cell-swipe
         v-for="item in userStock.myStock.data"
         :key="item.code"

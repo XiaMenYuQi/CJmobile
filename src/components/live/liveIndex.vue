@@ -5,7 +5,7 @@
           <mt-button icon="back"></mt-button>
         </router-link>
       </mt-header>
-      <div class="aui-content">
+      <div class="aui-content bg-white">
         <div id="J_prismPlayer" class="prism-player"></div>
 
         <div class="aui-list aui-media-list aui-list-border-0 live-userBox">
@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-
+        <div class="cell"></div>
         <div class="chart-box">
           <mt-cell :title="item.name" :value="item.time" :label="item.msg" v-for="item in responeArr" key="index"></mt-cell>
         </div>
@@ -105,7 +105,7 @@
         if(null!=this.userLoginInfo.data.id){
           loginUserId=this.userLoginInfo.data.id
         }
-        var wsUrl = liveUrl.replace("http:", "ws:")+"/ws?3_"+live.id+'_'+ loginUserId;
+        var wsUrl = liveUrl+live.id+'_'+ loginUserId;
         console.log(wsUrl);
         socket = new WebSocket(wsUrl);
         //连接监听事件
@@ -115,6 +115,7 @@
 
         //关闭监听事件
         socket.onclose = function() {
+          Toast("聊天室连接失败！");
           console.log('Connection disconnected');
         };
 
@@ -145,7 +146,7 @@
         //发送消息
         var _this = this;
         var msg = this.chartText;
-        if(null!=this.userLoginInfo.data.id){
+        if(null==this.userLoginInfo.data.id){
           Toast("请先登陆！");
           return false;
         }

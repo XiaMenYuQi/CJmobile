@@ -5,13 +5,14 @@
         <input type="search" placeholder="请输入股票代码或名称" v-model="value" />
         <i class="aui-iconfont aui-icon-close" @click="clearValue"></i>
       </div>
-      <div class="search-result">
+      <div class="search-result" v-show="value != ''">
         <mt-cell
           v-for="item in stockSearch"
           :key="item.code"
           :title="item.name"
           :value="item.code"
-          :to="'/market/index/'+item.code">
+          :to="'/market/index/'+item.code"
+          @click="clearValue">
         </mt-cell>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="bg-white">
-      <mt-header :title="title[id]">
+      <mt-header fixed :title="title[id]">
         <router-link to="/market" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>

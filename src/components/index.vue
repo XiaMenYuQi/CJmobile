@@ -27,11 +27,13 @@
     <div class="aui-padded-l-r-15">
       <ul class="aui-list news-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
         <li class="aui-list-item aui-img" v-for="item in newsList[0]">
+          <router-link :to="item.accessUrl | newsUrl">
           <div class="aui-list-item-title">
-            <div><router-link :to="item.accessUrl | newsUrl">{{item.title}}</router-link></div>
+            <div class="aui-ellipsis-2">{{item.title}}</div>
             <span class="small-text aui-margin-t-10">{{item.publishTime}}</span>
           </div>
-          <router-link :to="item.accessUrl | newsUrl"><img class="aui-list-item-media" :src="item.cover | imgUrl"></router-link>
+          <img class="aui-list-item-media" :src="item.cover | imgUrl">
+          </router-link>
         </li>
         <!--<p v-show="loading" class="page-infinite-loading">-->
           <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
@@ -82,4 +84,6 @@
 
 <style scoped>
   .aui-btn .aui-img-round{width:1.5rem}
+  .header{position: fixed;z-index: 100}
+  .index-nav{position: fixed;top: 2rem;z-index: 100}
 </style>

@@ -1,13 +1,15 @@
 <template>
     <div>
-      <mt-header title="栏目管理">
+      <mt-header fixed title="栏目管理">
         <mt-button icon="back" slot="left" @click="back"></mt-button>
       </mt-header>
 
-      <mt-cell v-for="item in category" key="index" :title="item.name">
-        <mt-button v-if="item.isShow" size="small" type="danger" @click="del(item)">-</mt-button>
-        <mt-button v-else size="small" type="primary" @click="add(item)">+</mt-button>
-      </mt-cell>
+      <div class="aui-content">
+        <mt-cell v-for="item in category" key="index" :title="item.name">
+          <mt-button v-if="item.isShow" size="small" type="danger" @click="del(item)">-</mt-button>
+          <mt-button v-else size="small" type="primary" @click="add(item)">+</mt-button>
+        </mt-cell>
+      </div>
     </div>
 </template>
 
