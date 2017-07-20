@@ -2,7 +2,7 @@
     <div>
       <mt-header fixed title="要闻">
         <mt-button icon="back" slot="left" @click="back"></mt-button>
-        <mt-button icon="more" slot="right"></mt-button>
+        <!--<mt-button icon="more" slot="right"></mt-button>-->
       </mt-header>
 
       <div class="aui-content" v-if="newsDetail.news!=null">
