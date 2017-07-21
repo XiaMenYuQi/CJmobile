@@ -29,6 +29,7 @@ a{color: #666666}
 .bor-b-1{border-bottom: 2px solid #fff;}
 .u-text-red{color: #ff4e4e}
 .u-text-green{color: #5bab79}
+.h100{height: 100%}
 
 /*列表顶部和底部没边框*/
 .aui-list-border-0.aui-list:before,.aui-list-border-0.aui-list:after{height:0;}
@@ -86,8 +87,8 @@ a{color: #666666}
 
 /*-----------修改MUI-UI--------------*/
 .mint-header{background-color: #fff;color:#484848;}
-.mint-header-title{font-size: 0.9rem;}
-
+.mint-header-title{font-size: 0.9rem;height: 100%;line-height: 40px;}
+.mint-cell-label{line-height: 1.5}
 .margin-top-40{margin-top: 40px}
 
 /*------头部-------*/
@@ -226,7 +227,8 @@ a{color: #666666}
 /*--------------------评论-----------------------*/
 .comment-list-avatar{width:2.75rem !important;}
 .comment-list-avatar img{width: 2rem !important;;height:2rem;}
-.comment-list-name,.comment-list-time{font-size: 0.5rem!important;color:#7b7b7b !important;}
+.comment-list-name{font-size: 0.6rem!important;color:#7b7b7b !important;}
+.comment-list-time{font-size: 0.6rem!important;color:#7b7b7b !important;}
 .comment-list-name{line-height: 1.8rem;}
 .comment-list-con{font-size: 0.8rem!important;color:#585858 !important;}
 

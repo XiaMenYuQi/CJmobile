@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import MintUI from 'mint-ui'
-import { Header , InfiniteScroll , Spinner , Field , Button , Cell   } from 'mint-ui';
+import { Header , InfiniteScroll , Spinner , Field , Button , Cell , Popup  } from 'mint-ui';
 import VueForm from 'vue-form';
 import 'mint-ui/lib/style.css'
 import "./filter/filter"
@@ -21,6 +21,7 @@ Vue.component(Spinner.name, Spinner);
 Vue.component(Field.name, Field);
 Vue.component(Button.name, Button);
 Vue.component(Cell.name, Cell);
+Vue.component(Popup.name, Popup);
 
 Vue.use(VueForm, {
   validators: {

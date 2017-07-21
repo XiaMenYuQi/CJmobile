@@ -3,11 +3,14 @@
 </template>
 
 <script>
+  import $ from 'jquery'
+
 	export default {
 		name: 'btnTop',
     methods: {
 			toTop(){
-        window.scrollTo(0,0)
+        $("html, body").animate({
+          scrollTop: 0 }, {duration: 500,easing: "swing"});
       }
     }
 	}

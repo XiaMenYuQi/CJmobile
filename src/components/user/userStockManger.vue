@@ -1,21 +1,25 @@
 <template>
-  <div>
+  <div class="bg-white h100">
     <mt-header fixed title="管理自选股">
       <router-link to="/user/stock" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
     <div class="aui-content" infinite-scroll-distance="50" v-infinite-scroll="addMore">
-      <mt-cell-swipe
-        v-for="item in userStock.myStock.data"
-        :key="item.code"
-        :right="[{
-          content: '删除',style: { background: 'red', color: '#fff' },handler: () => deleteStock(item.code)
-        }]"
-        :title="item.name"
-        :label="item.code"
-      >
-      </mt-cell-swipe>
+      <!--<mt-cell-swipe-->
+        <!--v-for="item in userStock.myStock.data"-->
+        <!--:key="item.code"-->
+        <!--:right="[{-->
+          <!--content: '删除',style: { background: 'red', color: '#fff' },handler: () => deleteStock(item.code)-->
+        <!--}]"-->
+        <!--:title="item.name"-->
+        <!--:label="item.code"-->
+      <!--&gt;-->
+      <!--</mt-cell-swipe>-->
+      <mt-cell v-for="item in userStock.myStock.data" key="index" :title="item.name" :label="item.code">
+        <mt-button size="small" type="danger" @click="deleteStock(item.code)">删除</mt-button>
+      </mt-cell>
+
     </div>
   </div>
 </template>

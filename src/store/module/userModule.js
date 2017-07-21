@@ -182,11 +182,22 @@ const actions = {
     Indicator.open();
     Vue.http.post( ctx +  '/user/notice' , {userId: state.userId, pageNo : pageNo,pageSize : 10 },{emulateJSON:true}).then(response => {
       Indicator.close();
-      //console.log(response);
+      //console.log(response.body);
         if( pageNo == 0){
           commit(types.INIT_USER_MESSAGE)
         }
         commit(types.GET_USER_MESSAGE, response.body)
+    }, response => {
+      console.log(response);
+      errMsg();
+      // error callback
+    });
+  },
+  //更新消息状态
+  updateUserMessage({ commit } , id){
+    //消息状态（0未读 1已读 2删除）
+    Vue.http.post( ctx +  '/user/notice/update' , {idStr: id, state : '1' },{emulateJSON:true}).then(response => {
+     console.log(response.body)
     }, response => {
       console.log(response);
       errMsg();

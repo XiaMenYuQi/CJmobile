@@ -5,18 +5,15 @@
           <mt-button icon="back"></mt-button>
         </router-link>
       </mt-header>
-      <div class="aui-content aui-padded-r-10 aui-padded-l-10" v-if="userMessage.data.length > 0" infinite-scroll-distance="50" v-infinite-scroll="addMore">
-        <div class="station-item aui-margin-t-15" v-for="item in userMessage.data">
-          <p class="station-item-time aui-text-center aui-font-size-12">{{item.send_time}}</p>
-          <div class="station-item-wrap">
-            <h3 class="station-item-title">{{item.title}}</h3>
-            <div class="station-item-con"></div>
-          </div>
-        </div>
-        <!--<p v-show="loading" class="page-infinite-loading">-->
-          <!--<mt-spinner type="fading-circle" color="#E85546"></mt-spinner>-->
-          <!--加载中...-->
-        <!--</p>-->
+      <div class="aui-content" v-if="userMessage.data.length > 0" infinite-scroll-distance="50" v-infinite-scroll="addMore">
+        <!--<div class="station-item aui-margin-t-15" v-for="item in userMessage.data">-->
+          <!--<p class="station-item-time aui-text-center aui-font-size-12">{{item.send_time}}</p>-->
+          <!--<div class="station-item-wrap">-->
+            <!--<h3 class="station-item-title">{{item.title}}</h3>-->
+            <!--<div class="station-item-con aui-ellipsis-2">{{item.content}}</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
         <!--<div class="station-item aui-margin-t-15">-->
           <!--<p class="station-item-time aui-text-center aui-font-size-12">2017-03-27 13:05</p>-->
           <!--<div class="station-item-wrap">-->
@@ -25,11 +22,28 @@
             <!--<div class="station-item-con">在主题为“货币政策”的博鳌亚洲论坛2017年年会论坛上，参与讨论的嘉宾大多数时候谈的却是财政政策和结构性改革。这或许能说明在当前的…...</div>-->
           <!--</div>-->
         <!--</div>-->
+        <ul>
+          <li class="mess-li" v-for="item in userMessage.data" :class="item.state==0?'bg-white': ''" @click="detail(item)">
+            <div class="mess-head clearfix">
+              <p class="title aui-ellipsis-1">
+                <i class="aui-iconfont aui-icon-mail aui-font-size-18 aui-margin-t-5"><div v-if="item.state==0" class="aui-dot"></div></i>
+                {{item.title}}
+              </p>
+              <p class="time">{{item.send_time}}</p>
+            </div>
+            <div class="mess-con aui-ellipsis-2">{{item.content}}</div>
+          </li>
+        </ul>
       </div>
       <div class="null-data" v-else>
         <img src="/static/image/null-data.png" alt="暂无数据">
         <p>您还没有消息</p>
       </div>
+
+      <mt-popup v-model="popupVisible" popup-transition="popup-fade" class="mint-popup">
+        <h1>{{popupTitle}}</h1>
+        <p>{{popupCon}}</p>
+      </mt-popup>
     </div>
 </template>
 
@@ -44,13 +58,22 @@
 		data () {
 			return {
 				pageNo : 0,
-        loading : false
+        popupVisible : false,
+        popupTitle : '',
+        popupCon : ''
       }
 		},
     created () {
       this.$store.dispatch('getUserMessage' , this.pageNo);
     },
     methods : {
+      detail(item){
+      	this.popupTitle = item.title;
+      	this.popupCon = item.content;
+      	this.popupVisible = true;
+        this.$store.dispatch('updateUserMessage' , item.id);
+        item.state = 1;
+      },
       addMore (){
         var _this = this;
         var totalPage = _this.userMessage.totalPage;
@@ -59,10 +82,15 @@
         _this.$store.dispatch('getUserMessage', _this.pageNo);
       }
     }
-//    watch : {
-//      userMessage (){
-//        this.loading = false
-//      }
-//    }
 	}
 </script>
+
+<style scoped>
+  .aui-dot{top: 0;right: -16%;}
+  .mess-li{padding: 10px;border-bottom: 1px solid #ccc;}
+  .mess-li .title{width: 60%;float: left;font-size: .8rem;color: #000;}
+  .mess-li .time{width: 40%;float: left;font-size: .5rem;margin-top: 5px; text-align: right;}
+  .mess-li .mess-con{font-size: .6rem;color: #757575;margin-bottom: 5px;}
+  .mint-popup{width: 80%;border-radius: 8px; padding: 10px;max-height: 80%; overflow-y: auto;}
+  .mint-popup h1{font-size: 20px;color: #26a2ff;}
+</style>
