@@ -71,8 +71,10 @@
       	this.popupTitle = item.title;
       	this.popupCon = item.content;
       	this.popupVisible = true;
-        this.$store.dispatch('updateUserMessage' , item.id);
-        item.state = 1;
+      	if(item.state == 0){
+          this.$store.dispatch('updateUserMessage' , item.id);
+          item.state = 1;
+        }
       },
       addMore (){
         var _this = this;
