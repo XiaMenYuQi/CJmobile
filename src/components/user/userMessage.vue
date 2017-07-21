@@ -4,36 +4,38 @@
         <router-link to="/user/center" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>
+        <mt-button slot="right" @click="editClick">{{btnFlag?'编辑': '取消'}}</mt-button>
       </mt-header>
-      <div class="aui-content" v-if="userMessage.data.length > 0" infinite-scroll-distance="50" v-infinite-scroll="addMore">
-        <!--<div class="station-item aui-margin-t-15" v-for="item in userMessage.data">-->
-          <!--<p class="station-item-time aui-text-center aui-font-size-12">{{item.send_time}}</p>-->
-          <!--<div class="station-item-wrap">-->
-            <!--<h3 class="station-item-title">{{item.title}}</h3>-->
-            <!--<div class="station-item-con aui-ellipsis-2">{{item.content}}</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="station-item aui-margin-t-15">-->
-          <!--<p class="station-item-time aui-text-center aui-font-size-12">2017-03-27 13:05</p>-->
-          <!--<div class="station-item-wrap">-->
-            <!--<h3 class="station-item-title aui-margin-b-10">周小川：货币政策并非万灵药 不能过于依赖</h3>-->
-            <!--<div class="station-item-img aui-margin-b-15"><img src="/static/image/img1.jpg"></div>-->
-            <!--<div class="station-item-con">在主题为“货币政策”的博鳌亚洲论坛2017年年会论坛上，参与讨论的嘉宾大多数时候谈的却是财政政策和结构性改革。这或许能说明在当前的…...</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <ul>
-          <li class="mess-li" v-for="item in userMessage.data" :class="item.state==0?'bg-white': ''" @click="detail(item)">
-            <div class="mess-head clearfix">
-              <p class="title aui-ellipsis-1">
-                <i class="aui-iconfont aui-icon-mail aui-font-size-18 aui-margin-t-5"><div v-if="item.state==0" class="aui-dot"></div></i>
-                {{item.title}}
-              </p>
-              <p class="time">{{item.send_time}}</p>
+      <div class="aui-content collection" v-if="userMessage.data.length > 0">
+        <div class="aui-list aui-list-border-0 aui-media-list" infinite-scroll-distance="50" v-infinite-scroll="addMore">
+          <div class="aui-list-item" v-for="item in userMessage.data" :class="item.state==0?'': 'bg-gary'">
+            <div class="aui-media-list-item-inner">
+              <div class="aui-list-item-inner">
+                <div class="aui-list-item-text">
+                  <div class="mess-li" @click="detail(item)">
+                    <div class="mess-head clearfix">
+                      <p class="title aui-ellipsis-1">
+                        <i class="aui-iconfont aui-icon-mail aui-font-size-18 aui-margin-t-5"><div v-if="item.state==0" class="aui-dot"></div></i>
+                        {{item.title}}
+                      </p>
+                      <p class="time">{{item.send_time}}</p>
+                    </div>
+                    <div class="mess-con aui-ellipsis-2">{{item.content}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="check-wrap" :class="btnFlag?'aui-hide': ''" >
+                <input type="checkbox" class="aui-radio" :value="item.id" v-model="checkedItem">
+              </div>
             </div>
-            <div class="mess-con aui-ellipsis-2">{{item.content}}</div>
-          </li>
-        </ul>
+          </div>
+        </div>
+
+        <div class="collection-edit-wrap aui-text-center clearfix" :class="btnFlag?'aui-hide': ''">
+          <div class="aui-col-xs-6 aui-border-r" @click.stop="checkAll">{{checkBtnFlag?'取消全选':'全选'}}</div>
+          <div class="aui-col-xs-6" @click.stop="deleteNews">删除(<span>{{num}}</span>)</div>
+        </div>
+
       </div>
       <div class="null-data" v-else>
         <img src="/static/image/null-data.png" alt="暂无数据">
@@ -49,20 +51,34 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  import { MessageBox , Toast} from 'mint-ui'
 
 	export default {
 		name: 'userMessage',
-    computed: mapGetters({
-      userMessage: 'userMessage'
-    }),
+    computed: {
+      ...mapGetters({
+        userMessage: 'userMessage'
+      }),
+      num : function(){
+        return this.checkedItem.length
+      }
+    },
 		data () {
 			return {
 				pageNo : 0,
         popupVisible : false,
         popupTitle : '',
-        popupCon : ''
+        popupCon : '',
+        btnFlag : true,
+        checkBtnFlag : false,
+        checkedItem :[]
       }
 		},
+    watch: {
+      num (){
+        this.checkBtnFlag = (this.num == this.userMessage.data.length);
+      },
+    },
     created () {
       this.$store.dispatch('getUserMessage' , this.pageNo);
     },
@@ -72,9 +88,47 @@
       	this.popupCon = item.content;
       	this.popupVisible = true;
       	if(item.state == 0){
-          this.$store.dispatch('updateUserMessage' , item.id);
+          this.$store.dispatch('updateUserMessage' , {idStr : item.id , state : 1});
           item.state = 1;
         }
+      },
+      init(){
+        this.pageNo = 0;
+        this.checkedItem = [];
+        this.btnFlag = true;
+        this.checkBtnFlag = false;
+      },
+      editClick (){
+        this.btnFlag = !this.btnFlag;
+      },
+      checkAll (){
+        this.checkBtnFlag = !this.checkBtnFlag;
+        var arr = [];
+        if(this.checkBtnFlag){
+          //全选
+          this.userMessage.data.forEach(function(e){
+            arr.push(e.id)
+          });
+          this.checkedItem = arr
+        }else{
+          this.checkedItem = []
+        }
+
+      },
+      deleteNews (){
+        var _this = this;
+        if(this.num == 0){ return }
+        MessageBox.confirm('确定删除选中列表?').then(({ action }) => {
+          //确定
+          var idStr = _this.checkedItem.toString();
+          _this.$store.dispatch('updateUserMessage' , {idStr : idStr , state : 2});
+          _this.init();
+          _this.$store.dispatch('getUserMessage' , this.pageNo);
+          Toast('删除成功！');
+        },()=>{
+          //取消
+          console.log('reject')
+        });
       },
       addMore (){
         var _this = this;
@@ -88,8 +142,10 @@
 </script>
 
 <style scoped>
+  .aui-list-item{border-bottom: 1px solid #ccc;}
   .aui-dot{top: 0;right: -16%;}
-  .mess-li{padding: 10px;border-bottom: 1px solid #ccc;}
+  .bg-gary{background-color: #f5f5f5}
+  .mess-li{width: 100%}
   .mess-li .title{width: 60%;float: left;font-size: .8rem;color: #000;}
   .mess-li .time{width: 40%;float: left;font-size: .5rem;margin-top: 5px; text-align: right;}
   .mess-li .mess-con{font-size: .6rem;color: #757575;margin-bottom: 5px;}

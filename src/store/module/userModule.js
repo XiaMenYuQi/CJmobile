@@ -194,9 +194,9 @@ const actions = {
     });
   },
   //更新消息状态
-  updateUserMessage({ commit } , id){
+  updateUserMessage({ commit } , {idStr : idStr , state : state}){
     //消息状态（0未读 1已读 2删除）
-    Vue.http.post( ctx +  '/user/notice/update' , {idStr: id, state : '1' },{emulateJSON:true}).then(response => {
+    Vue.http.post( ctx +  '/user/notice/update' , {idStr: idStr, state : state },{emulateJSON:true}).then(response => {
      console.log(response.body)
     }, response => {
       console.log(response);

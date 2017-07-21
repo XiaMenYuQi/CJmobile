@@ -22,11 +22,16 @@
             </div>
             <div class="clearfix  aui-hide market-theme-item-con aui-padded-b-15">
               <div class="aui-col-xs-4 item-box" v-for="item in stockData.riseDropPlateData.rise">
-                <router-link :to="'/market/index/' + item.stock.code">
-                <div>{{item.name}}</div>
-                <div class="red">{{item.changePercent}}%</div>
-                <div class="small-text1">{{item.stock.name }}<br />{{item.stock.changePercent}}%</div>
+                <router-link :to="'/market/index/' + item.stock.code" v-if="item.stock!=null">
+                  <div>{{item.name}}</div>
+                  <div class="red">{{item.changePercent}}%</div>
+                  <div class="small-text1">{{item.stock.name }}<br />{{item.stock.changePercent}}%</div>
                 </router-link>
+                <div v-else>
+                  <div>{{item.name}}</div>
+                  <div class="red">{{item.changePercent}}%</div>
+                  <div class="small-text1">暂无数据</div>
+                </div>
               </div>
             </div>
           </div>
@@ -40,11 +45,16 @@
             </div>
             <div class="clearfix  aui-hide market-theme-item-con aui-padded-b-15">
               <div class="aui-col-xs-4 item-box" v-for="item in stockData.riseDropPlateData.drop">
-                <router-link :to="'/market/index/' + item.stock.code">
-                <div>{{item.name}}</div>
-                <div class="green">{{item.changePercent}}%</div>
-                <div class="small-text1">{{item.stock.name }}<br />{{item.stock.changePercent}}%</div>
+                <router-link :to="'/market/index/' + item.stock.code" v-if="item.stock!=null">
+                  <div>{{item.name}}</div>
+                  <div class="red">{{item.changePercent}}%</div>
+                  <div class="small-text1">{{item.stock.name }}<br />{{item.stock.changePercent}}%</div>
                 </router-link>
+                <div v-else>
+                  <div>{{item.name}}</div>
+                  <div class="red">{{item.changePercent}}%</div>
+                  <div class="small-text1">暂无数据</div>
+                </div>
               </div>
             </div>
           </div>

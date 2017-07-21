@@ -121,15 +121,3 @@
 	}
 </script>
 
-<style>
-  /*--------------------我的收藏-----------------------*/
-  .collection .aui-list .aui-list-item-inner{padding-right: 0.6rem;}
-  .collection .aui-list-item{padding-left: 0.6rem;}
-  .collection .aui-list-item-media img{height: 3rem;}
-  .collection .check-wrap{position: relative;padding:0.74rem;}
-  .collection .check-wrap .aui-radio{position: absolute;width: 0.9rem;height:0.9rem;top:50%;margin-top: -0.45rem;left: 0; }
-  .collection .aui-radio:checked,.collection .aui-radio.aui-checked{background-color: #E85546 !important;border: 1px solid #E85546 ;}
-  .collection-edit-wrap{padding:0.3rem 0;background-color: #E85546;line-height: 2rem;color: #fff;font-size: 0.8rem !important;position: fixed;bottom: 0;width: 100%;z-index:2;}
-  .collection-edit-wrap .aui-border-r:after {background-color: #fff;-webkit-transform: scaleX(0.5) !important;  transform: scaleX(0.5) !important;}
-
-</style>
